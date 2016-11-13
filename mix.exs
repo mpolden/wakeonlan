@@ -9,7 +9,8 @@ defmodule WOL.Mixfile do
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      package: package()
+      package: package(),
+      description: description()
     ]
   end
 
@@ -18,14 +19,22 @@ defmodule WOL.Mixfile do
   end
 
   defp deps do
-    [{:socket, "~> 0.3"}]
+    [
+      {:socket, "~> 0.3"},
+      {:ex_doc, "~> 0.14", only: :dev}
+    ]
+  end
+
+  defp description do
+    "An Elixir module for sending Wake-on-LAN packets"
   end
 
   defp package do
     [
       name: "wakeonlan",
-      files: ["lib", "mix.ex", "README", "LICENSE"],
-      licenses: ["BSD 3-Clause"],
+      files: ["lib", "mix.exs", "README.md", "LICENSE"],
+      maintainers: ["Martin Polden"],
+      licenses: ["BSD-3-Clause"],
       links: %{"GitHub" => "https://github.com/martinp/wakeonlan"}
     ]
   end
